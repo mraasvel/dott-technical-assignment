@@ -1,2 +1,6 @@
-# dott-technical-assignment
-Dott: technical assignment for Codam technical interview simulation event
+# Dott: Technical Assignment
+
+## Assignment
+Described in PDF file under assignment/Dott.pdf
+
+Language: typescript
