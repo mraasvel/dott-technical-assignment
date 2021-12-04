@@ -5,7 +5,7 @@ import { Solution } from './solution'
 /*
 Concept:
 1. read in Rows, Columns
-2. Create a Matrix and read data into the matrix
+2. Create a Matrixread data into the matrix
 3. Execute testcase
 4. Return or output result
 */
@@ -16,7 +16,7 @@ export class TestCase {
 		this.parseValues(lines);
 	}
 
-	public solve() : Matrix<number> {
+	public solve() : Matrix {
 		let solution = new Solution(this.matrix.getRows(), this.matrix.getColumns());
 		return solution.solve(this.matrix);
 	}
@@ -57,5 +57,5 @@ export class TestCase {
 	}
 
 /* Member Variables */
-	private matrix : Matrix<number> = new Matrix<number>();
+	private matrix : Matrix = new Matrix();
 };

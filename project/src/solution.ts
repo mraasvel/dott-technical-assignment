@@ -17,12 +17,12 @@ export class Solution {
 		}
 	}
 
-	public solve(map : Matrix<number>) : Matrix<number> {
+	public solve(map : Matrix) : Matrix {
 		for (let i = 0; i < map.getRows(); ++i) {
 			for (let j = 0; j < map.getColumns(); ++j) {
 				if (map.get(i, j) == 1) {
 					// Pixel is white
-					this.dijkstra(i, j);
+					this.bruteforce(i, j);
 				}
 			}
 		}
@@ -30,7 +30,7 @@ export class Solution {
 	}
 
 /* Private Functions */
-	private dijkstra(row : number, column : number) {
+	private bruteforce(row : number, column : number) {
 		// Set all other pixels to the distance of this pixel
 		this.distances.set(row, column, 0);
 
@@ -47,5 +47,5 @@ export class Solution {
 	}
 
 /* Private Members */
-	private distances : Matrix<number> = new Matrix<number>();
+	private distances : Matrix = new Matrix;
 };

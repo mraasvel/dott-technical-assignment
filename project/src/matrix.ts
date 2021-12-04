@@ -1,27 +1,29 @@
+import { stringify } from "querystring";
+
 /*
 Basic templated matrix data structure
 */
-export class Matrix<T> {
+export class Matrix {
 
 	constructor(rows : number = 0, columns : number = 0) {
 		this.rows = rows;
 		this.columns = columns;
-		this.table = new Array<T>(rows * columns);
+		this.table = new Array<number>(rows * columns);
 	}
 
 /* Public Interface Functions */
 	public setDimensions(rows : number, columns : number) : void {
 		this.rows = rows;
 		this.columns = columns;
-		this.table = new Array<T>(rows * columns);
+		this.table = new Array<number>(rows * columns);
 	}
 
-	public set(row : number, column : number, value : T) : void {
+	public set(row : number, column : number, value : number) : void {
 		this.boundCheck(row, column);
 		this.table[this.computeIndex(row, column)] = value;
 	}
 
-	public get(row : number, column : number) : T {
+	public get(row : number, column : number) : number {
 		this.boundCheck(row, column);
 		return this.table[this.computeIndex(row, column)];
 	}
@@ -36,7 +38,14 @@ export class Matrix<T> {
 
 	public print() : void {
 		for (let i = 0; i < this.rows; ++i) {
-			console.log(this.table.slice(this.columns * i, this.columns * i + this.columns));
+			let line : string = "";
+			for (let j = 0; j < this.columns; ++j) {
+				line += this.get(i, j).toString();
+				if (j < this.columns - 1) {
+					line += ' ';
+				}
+			}
+			console.log(line);
 		}
 	}
 
@@ -52,7 +61,7 @@ export class Matrix<T> {
 	}
 
 /* Member Variables */
-	private table : Array<T>;
+	private table : Array<number>;
 	private rows : number;
 	private columns : number;
 };
