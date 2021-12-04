@@ -1,5 +1,6 @@
 import { assert } from 'console';
 import { Matrix } from './matrix'
+import { Solution } from './solution'
 
 /*
 Concept:
@@ -13,7 +14,11 @@ export class TestCase {
 		this.createMatrix(lines[0]);
 		lines.shift();
 		this.parseValues(lines);
-		this.matrix.print();
+	}
+
+	public solve() : Matrix<number> {
+		let solution = new Solution(this.matrix.getRows(), this.matrix.getColumns());
+		return solution.solve(this.matrix);
 	}
 
 /* Parsing input, removing used lines */
@@ -25,6 +30,7 @@ export class TestCase {
 		const row = parseInt(values[0]);
 		const column = parseInt(values[1]);
 		this.assertDimensions(row, column);
+
 		this.matrix.setDimensions(row, column);
 	}
 

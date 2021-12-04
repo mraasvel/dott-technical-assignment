@@ -25,6 +25,6 @@ getInput().then(lines => {
 	for (let i : number = 0; i < num_tests; ++i) {
 		assert(lines.length != 0);
 		let testcase : TestCase = new TestCase(lines);
+		testcase.solve().print();
 	}
 });
-
