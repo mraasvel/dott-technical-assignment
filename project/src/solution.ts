@@ -7,16 +7,6 @@ function distance(row1 : number, col1 : number, row2 : number, col2 : number) : 
 	return Math.abs(row1 - row2) + Math.abs(col1 - col2);
 }
 
-class Point {
-	constructor(r : number, c : number) {
-		this.row = r;
-		this.col = c;
-	}
-
-	public row : number;
-	public col : number;
-}
-
 export class Solution {
 	constructor(rows : number, columns : number) {
 		this.distances.setDimensions(rows, columns);
