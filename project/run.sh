@@ -1,1 +1,1 @@
-make && node js/main.js
+make && cat input.txt | node js/main.js
