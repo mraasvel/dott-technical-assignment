@@ -36,16 +36,23 @@ export class TestCase {
 
 	private parseValues(lines : string[]) {
 		assert(lines.length >= this.matrix.getRows());
+		let got_one = false;
 		for (let i = 0; i < this.matrix.getRows(); ++i) {
 			assert(lines[0].length == this.matrix.getColumns());
 			for (let j = 0; j < this.matrix.getColumns(); ++j) {
 				let value = parseInt(lines[0][j]);
 				if (value != 0 && value != 1) {
 					throw new Error("Invalid Value: " + lines[0][j]);
+				} else if (value == 1) {
+					got_one = true;
 				}
 				this.matrix.set(i, j, value);
 			}
 			lines.shift();
+		}
+
+		if (!got_one) {
+			throw new Error("Only zero's in bitmap");
 		}
 	}
 

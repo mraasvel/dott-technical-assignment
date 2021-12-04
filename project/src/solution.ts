@@ -7,6 +7,16 @@ function distance(row1 : number, col1 : number, row2 : number, col2 : number) : 
 	return Math.abs(row1 - row2) + Math.abs(col1 - col2);
 }
 
+class Point {
+	constructor(r : number, c : number) {
+		this.row = r;
+		this.col = c;
+	}
+
+	public row : number;
+	public col : number;
+}
+
 export class Solution {
 	constructor(rows : number, columns : number) {
 		this.distances.setDimensions(rows, columns);
@@ -30,11 +40,13 @@ export class Solution {
 	}
 
 /* Private Functions */
+
+	// Bruforce: complexity: O(n^2)
+	// For each other pixel, set the distance from the current white pixel
 	private bruteforce(row : number, column : number) {
 		// Set all other pixels to the distance of this pixel
 		this.distances.set(row, column, 0);
 
-		/* Very inefficient bruteforce */
 		for (let i = 0; i < this.distances.getRows(); ++i) {
 			for (let j = 0; j < this.distances.getColumns(); ++j) {
 				const dist = distance(row, column, i, j);
