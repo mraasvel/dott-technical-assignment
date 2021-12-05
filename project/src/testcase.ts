@@ -1,11 +1,12 @@
 import { assert } from 'console';
 import { Matrix } from './matrix'
+import { Point } from './point';
 import { Solution } from './solution'
 
 /*
 Concept:
 1. read in Rows, Columns
-2. Create a Matrixread data into the matrix
+2. Create a Matrix, read data into the matrix
 3. Execute testcase
 4. Return or output result
 */
@@ -16,7 +17,8 @@ export class TestCase {
 		this.parseValues(lines);
 	}
 
-	public solve() : Matrix {
+	// Simple interface function, returns the matrix with the solved distances as specified by the subject
+	public solve() : Matrix<number> {
 		let solution = new Solution(this.matrix.getRows(), this.matrix.getColumns());
 		return solution.solve(this.matrix);
 	}
@@ -37,16 +39,16 @@ export class TestCase {
 	private parseValues(lines : string[]) {
 		assert(lines.length >= this.matrix.getRows());
 		let got_one = false;
-		for (let i = 0; i < this.matrix.getRows(); ++i) {
+		for (let y = 0; y < this.matrix.getRows(); ++y) {
 			assert(lines[0].length == this.matrix.getColumns());
-			for (let j = 0; j < this.matrix.getColumns(); ++j) {
-				let value = parseInt(lines[0][j]);
+			for (let x = 0; x < this.matrix.getColumns(); ++x) {
+				let value = parseInt(lines[0][x]);
 				if (value != 0 && value != 1) {
-					throw new Error("Invalid Value: " + lines[0][j]);
+					throw new Error("Invalid Value: " + lines[0][x]);
 				} else if (value == 1) {
 					got_one = true;
 				}
-				this.matrix.set(i, j, value);
+				this.matrix.set(new Point(x, y), value);
 			}
 			lines.shift();
 		}
@@ -64,5 +66,5 @@ export class TestCase {
 	}
 
 /* Member Variables */
-	private matrix : Matrix = new Matrix();
+	private matrix = new Matrix<number>();
 };

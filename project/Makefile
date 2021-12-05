@@ -15,10 +15,6 @@ all: $(JS)
 $(JS): $(SRC)
 	@$(NPX)
 
-.PHONY: run
-run: $(JS)
-	node $(NAME)
-
 .PHONY: clean re
 clean:
 	$(RM) -r $(JDIR)
