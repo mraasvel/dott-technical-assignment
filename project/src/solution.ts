@@ -33,25 +33,6 @@ export class Solution {
 
 /* Private Functions */
 
-	// This was the initial solution, but it was slow so I implemented Dijkstra's instead
-	// Bruforce: complexity: O(n^2)
-	// For each other pixel, set the distance from the current white pixel
-	private bruteforce(point : Point) {
-		// Set all other pixels to the distance of this pixel
-		this.distances.set(point, 0);
-		for (let y = 0; y < this.distances.getRows(); ++y) {
-			for (let x = 0; x < this.distances.getColumns(); ++x) {
-				const current_point = new Point(x, y);
-				const dist = current_point.distance(point);
-
-				// Point is set either if it is infinity (uninitialized) or has a greater distance to another white pixel
-				if (this.shouldSetDistance(current_point, point)) {
-					this.distances.set(current_point, dist);
-				}
-			}
-		}
-	}
-
 	private shouldSetDistance(to_set : Point, original : Point) : boolean {
 		return this.distances.get(to_set) == Infinity
 		|| this.distances.get(to_set) > to_set.distance(original)
@@ -100,6 +81,26 @@ export class Solution {
 			if (this.shouldExplorePoint(neighbours[i], original, map)) {
 				queue.push(neighbours[i]);
 				this.searching.set(neighbours[i], true);
+			}
+		}
+	}
+
+
+	// This was the initial solution, but it was slow so I implemented Dijkstra's instead
+	// Bruforce: complexity: O(n^2)
+	// For each other pixel, set the distance from the current white pixel
+	private bruteforce(point : Point) {
+		// Set all other pixels to the distance of this pixel
+		this.distances.set(point, 0);
+		for (let y = 0; y < this.distances.getRows(); ++y) {
+			for (let x = 0; x < this.distances.getColumns(); ++x) {
+				const current_point = new Point(x, y);
+				const dist = current_point.distance(point);
+
+				// Point is set either if it is infinity (uninitialized) or has a greater distance to another white pixel
+				if (this.shouldSetDistance(current_point, point)) {
+					this.distances.set(current_point, dist);
+				}
 			}
 		}
 	}
