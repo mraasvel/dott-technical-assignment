@@ -1,21 +1,21 @@
 export class Queue<T> {
-	public empty() : boolean {
+	public empty(): boolean {
 		return this.size() == 0;
 	}
 
-	public size() : number {
+	public size(): number {
 		return this.container.length
 	}
 
-	public front() : T {
+	public front(): T {
 		return this.container[0];
 	}
 
-	public back() : T {
+	public back(): T {
 		return this.container[this.size() - 1];
 	}
 
-	public push(value : T) : void {
+	public push(value: T): void {
 		this.container.push(value);
 	}
 
@@ -24,5 +24,5 @@ export class Queue<T> {
 	}
 
 	// Container type
-	private container : T[] = [];
+	private container: T[] = [];
 };

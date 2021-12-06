@@ -7,7 +7,7 @@ import { Queue } from './queue';
 Class for the actual implementation of solving the problem statement
 */
 export class Solution {
-	constructor(rows : number, columns : number) {
+	constructor(rows: number, columns: number) {
 		this.distances = new Matrix<number>(rows, columns);
 		this.searching = new Matrix<boolean>(rows, columns);
 		for (let y = 0; y < rows; ++y) {
@@ -18,7 +18,7 @@ export class Solution {
 		}
 	}
 
-	public solve(map : Matrix<number>) : Matrix<number> {
+	public solve(map: Matrix<number>): Matrix<number> {
 		for (let y = 0; y < map.getRows(); ++y) {
 			for (let x = 0; x < map.getColumns(); ++x) {
 				const p = new Point(x, y)
@@ -31,18 +31,18 @@ export class Solution {
 		return this.distances;
 	}
 
-/* Private Functions */
+	/* Private Functions */
 
-	private shouldSetDistance(to_set : Point, original : Point) : boolean {
+	private shouldSetDistance(to_set: Point, original: Point): boolean {
 		return this.distances.get(to_set) == Infinity
-		|| this.distances.get(to_set) > to_set.distance(original)
+			|| this.distances.get(to_set) > to_set.distance(original)
 	}
 
 	/*
 	Add all neighbouring points to the queue (if not yet present)
 	Explore only those that have a distance less than the current point (skip already set points)
 	*/
-	private dijkstra(point : Point, map : Matrix<number>) {
+	private dijkstra(point: Point, map: Matrix<number>) {
 		let queue = new Queue<Point>();
 		queue.push(point);
 		this.searching.set(point, true);
@@ -57,7 +57,7 @@ export class Solution {
 		}
 	}
 
-	private shouldExplorePoint(to_explore : Point, original : Point, map : Matrix<number>) : boolean {
+	private shouldExplorePoint(to_explore: Point, original: Point, map: Matrix<number>): boolean {
 		return !this.distances.isOutOfBounds(to_explore) &&
 			map.get(to_explore) == 0 &&
 			this.searching.get(to_explore) == false &&
@@ -65,7 +65,7 @@ export class Solution {
 	}
 
 	// For each neighbour, check if it exists, and if it should be explored
-	private addNeighboursToQueue(p : Point, original : Point, queue : Queue<Point>, map : Matrix<number>) {
+	private addNeighboursToQueue(p: Point, original: Point, queue: Queue<Point>, map: Matrix<number>) {
 		const neighbours = [
 			new Point(p.x, p.y - 1),
 			new Point(p.x, p.y + 1),
@@ -74,7 +74,7 @@ export class Solution {
 			new Point(p.x - 1, p.y + 1),
 			new Point(p.x + 1, p.y),
 			new Point(p.x + 1, p.y - 1),
-			new Point(p.x + 1, p.y + 1)
+			new Point(p.x + 1, p.y + 1),
 		];
 
 		for (let i = 0; i < neighbours.length; ++i) {
@@ -89,7 +89,7 @@ export class Solution {
 	// This was the initial solution, but it was slow so I implemented Dijkstra's instead
 	// Bruforce: complexity: O(n^2)
 	// For each other pixel, set the distance from the current white pixel
-	private bruteforce(point : Point) {
+	private bruteforce(point: Point) {
 		// Set all other pixels to the distance of this pixel
 		this.distances.set(point, 0);
 		for (let y = 0; y < this.distances.getRows(); ++y) {
@@ -105,7 +105,7 @@ export class Solution {
 		}
 	}
 
-/* Private Members */
-	private distances : Matrix<number>;
-	private searching : Matrix<boolean>;
+	/* Private Members */
+	private distances: Matrix<number>;
+	private searching: Matrix<boolean>;
 };
