@@ -10,6 +10,7 @@ Language: typescript
 `npm i`
 ### build and run program
 `npm run start`
+
 Now the program will start reading from stdin.
 
 ## Generating inputs
@@ -17,5 +18,5 @@ Perl script that generates by default n testcases with rows and columns between 
 
 `perl generate.pl [NUM_TESTCASES] [MAX_DIMENSIONS]`
 
-### Running with custom input:
+### Running with generated input:
 `perl generate.pl | npm run start`
