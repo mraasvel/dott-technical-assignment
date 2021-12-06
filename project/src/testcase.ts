@@ -1,4 +1,3 @@
-import { assert } from 'console';
 import { Matrix } from './matrix'
 import { Point } from './point';
 import { Solution } from './solution'
@@ -37,10 +36,14 @@ export class TestCase {
 	}
 
 	private parseValues(lines: string[]) {
-		assert(lines.length >= this.matrix.getRows());
+		if (lines.length < this.matrix.getRows()) {
+			throw new Error("Parsing Error: invalid line count");
+		}
 		let got_one = false;
 		for (let y = 0; y < this.matrix.getRows(); ++y) {
-			assert(lines[0].length == this.matrix.getColumns());
+			if (lines[0].length != this.matrix.getColumns()) {
+				throw new Error("Parsing Error: invalid line length: " + lines[0]);
+			}
 			for (let x = 0; x < this.matrix.getColumns(); ++x) {
 				const value = parseInt(lines[0][x]);
 				if (value != 0 && value != 1) {

@@ -1,4 +1,3 @@
-import { assert } from 'console';
 import { Matrix } from './matrix'
 import { Point } from './point';
 import { Queue } from './queue';
