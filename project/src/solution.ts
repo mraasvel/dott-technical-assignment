@@ -46,7 +46,6 @@ export class Solution {
 		queue.push(point);
 		this.searching.set(point, true);
 
-		// this.distances.set(point, 0);
 		while (!queue.empty()) {
 			const p = queue.front();
 			queue.pop();
