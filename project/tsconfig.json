@@ -12,7 +12,7 @@
 
     /* JavaScript Support */
     /* Emit */
-    "outDir": "./js",                                   /* Specify an output folder for all emitted files. */
+    "outDir": "./build",                                   /* Specify an output folder for all emitted files. */
 
     /* Interop Constraints */
     "esModuleInterop": true,                             /* Emit additional JavaScript to ease support for importing CommonJS modules. This enables `allowSyntheticDefaultImports` for type compatibility. */
